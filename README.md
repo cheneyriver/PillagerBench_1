@@ -6,7 +6,7 @@ Welcome to PillagerBench, where the blocky world of Minecraft isn't just for fun
 
 Customize your benchmark with our PillagerAgent extensible API, allowing you to add custom scenarios and new multi-agent systems.
 <p align="center">
-    <a href=''>
+    <a href='https://arxiv.org/pdf/2509.06235'>
       <img src='https://img.shields.io/badge/Paper-PDF-green?style=for-the-badge&logo=arXiv&logoColor=green' alt='Paper PDF'>
     </a>
 </p>
@@ -112,7 +112,22 @@ This project is the Master's thesis of [Olivier Schipper](https://github.com/Oli
 
 ## Citation
 
-TODO
+If you find our work helpful, please leave us a star and cite our paper.
+
+```
+@INPROCEEDINGS{schipper2025pillagerbench,
+  author={Schipper, Olivier and Zhang, Yudi and Du, Yali and Pechenizkiy, Mykola and Fang, Meng},
+  booktitle={2025 IEEE Conference on Games (CoG)}, 
+  title={PillagerBench: Benchmarking LLM-Based Agents in Competitive Minecraft Team Environments}, 
+  year={2025},
+  volume={},
+  number={},
+  pages={1-15},
+  keywords={Adaptive learning;Games;Benchmark testing;Solids;Real-time systems;Cognition;Teamwork;Artificial intelligence;Multi-agent systems},
+  doi={10.1109/CoG64752.2025.11114387},
+  url={https://arxiv.org/abs/2509.06235}
+}
+```
 
 ## License
 
