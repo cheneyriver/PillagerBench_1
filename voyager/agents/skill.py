@@ -1,8 +1,14 @@
 import os
 
-from langchain.schema import HumanMessage, SystemMessage
-from langchain_chroma import Chroma
-from langchain_openai import OpenAIEmbeddings
+from langchain_core.messages import HumanMessage, SystemMessage
+try:
+    from langchain_chroma import Chroma
+except ModuleNotFoundError:  # pragma: no cover
+    Chroma = None
+try:
+    from langchain_openai import OpenAIEmbeddings
+except ModuleNotFoundError:  # pragma: no cover
+    OpenAIEmbeddings = None
 
 import voyager.utils as U
 from voyager.control_primitives import load_control_primitives
@@ -36,6 +42,12 @@ class SkillManager:
         self.retrieval_top_k = retrieval_top_k
         self.ckpt_dir = ckpt_dir
         self.logger = logger
+        if Chroma is None or OpenAIEmbeddings is None:
+            raise ModuleNotFoundError(
+                "SkillManager requires `langchain_chroma` and `langchain_openai` "
+                "(for OpenAIEmbeddings). Install them or switch to an agent/policy "
+                "that does not instantiate SkillManager."
+            )
         self.vectordb = Chroma(
             collection_name="skill_vectordb",
             embedding_function=OpenAIEmbeddings(),

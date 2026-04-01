@@ -1,4 +1,4 @@
-from langchain.schema import HumanMessage, SystemMessage
+from langchain_core.messages import HumanMessage, SystemMessage
 
 from voyager.llm import create_llm, invoke_with_log
 from voyager.prompts import load_prompt

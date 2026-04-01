@@ -27,7 +27,7 @@ class CotAgent(Agent):
         self.save_dir = None
         self.result = None
         self.scenario: Scenario | None = None
-        self.llm = create_llm("gpt-4o-2024-08-06", 0.3, 120)
+        self.llm = create_llm("gpt-4.1-nano", 0.3, 120)
         self.control_primitives_context = []
         self.team_id = 0
 

@@ -3,9 +3,15 @@ from __future__ import annotations
 import random
 import re
 
-from langchain.schema import HumanMessage, SystemMessage
-from langchain_chroma import Chroma
-from langchain_openai import OpenAIEmbeddings
+from langchain_core.messages import HumanMessage, SystemMessage
+try:
+    from langchain_chroma import Chroma
+except ModuleNotFoundError:  # pragma: no cover
+    Chroma = None
+try:
+    from langchain_openai import OpenAIEmbeddings
+except ModuleNotFoundError:  # pragma: no cover
+    OpenAIEmbeddings = None
 
 import voyager.utils as U
 from voyager.llm import create_llm, invoke_with_log
@@ -38,6 +44,12 @@ class CurriculumAgent:
         self.ckpt_dir = ckpt_dir
         self.logger = logger
         U.f_mkdir(f"{ckpt_dir}/curriculum/vectordb")
+        if Chroma is None or OpenAIEmbeddings is None:
+            raise ModuleNotFoundError(
+                "CurriculumAgent requires `langchain_chroma` and `langchain_openai` "
+                "(for OpenAIEmbeddings). Install them or switch to an agent/policy "
+                "that does not instantiate CurriculumAgent."
+            )
         if resume:
             self.logger(f"\033[35mLoading Curriculum Agent from {ckpt_dir}/curriculum\033[0m")
             self.completed_tasks = U.load_json(

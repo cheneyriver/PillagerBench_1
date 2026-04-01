@@ -2,8 +2,8 @@ import re
 import time
 
 from javascript import require
-from langchain.prompts import SystemMessagePromptTemplate
-from langchain.schema import AIMessage, HumanMessage, SystemMessage
+from langchain_core.prompts import SystemMessagePromptTemplate
+from langchain_core.messages import AIMessage, HumanMessage, SystemMessage
 
 import voyager.utils as U
 from voyager.control_primitives_context import load_control_primitives_context
